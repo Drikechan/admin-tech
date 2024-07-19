@@ -8,8 +8,8 @@ import java.io.InputStream;
 
 public class AliCloudUploadUtil {
     private static final String  ENDPOINT = "oss-cn-beijing.aliyuncs.com";
-    private static final String ACCESS_KEY = "";
-    private static final String ACCESS_KEY_SECRET = "";
+    private static final String ACCESS_KEY = "2";
+    private static final String ACCESS_KEY_SECRET = "3";
     private static final String BUCKET_NAME = "michaelchan";
 
     public static String uploadFile(String objectName, InputStream in) throws Exception {
