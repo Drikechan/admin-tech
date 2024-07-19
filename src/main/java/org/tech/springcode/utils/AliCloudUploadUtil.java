@@ -3,13 +3,23 @@ import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+@Component
 public class AliCloudUploadUtil {
     private static final String  ENDPOINT = "oss-cn-beijing.aliyuncs.com";
-    private static final String ACCESS_KEY = "2";
-    private static final String ACCESS_KEY_SECRET = "3";
+
+    @Value("${uploadSetting.ACCESS_KEY}")
+    private static String ACCESS_KEY;
+
+    @Value("${uploadSetting.ACCESS_KEY_SECRET}")
+    private static String ACCESS_KEY_SECRET;
+
     private static final String BUCKET_NAME = "michaelchan";
 
     public static String uploadFile(String objectName, InputStream in) throws Exception {
@@ -20,7 +30,8 @@ public class AliCloudUploadUtil {
         url = "https://" + BUCKET_NAME + "." + ENDPOINT + "/" + objectName;
         try {
             String content = "Hello OSS";
-            ossClient.putObject(BUCKET_NAME, objectName, new ByteArrayInputStream(content.getBytes()));
+            ossClient.putObject(BUCKET_NAME, objectName, in);
+            url = "https://" + BUCKET_NAME + "." + ENDPOINT + "/" + objectName;
 
         } catch (OSSException oe) {
             System.out.println("Caught an OSSException, which means your request made it to OSS, "

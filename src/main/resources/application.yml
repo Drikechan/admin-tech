@@ -6,3 +6,6 @@ spring:
     password: 12345678
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+uploadSetting:
+  ACCESS_KEY: LTAI5tNhXKtw2YWe4XYXo4iN
+  ACCESS_KEY_SECRET: WjmN8KOFHeLFG3bNb9e6bXsIoBPsXx
