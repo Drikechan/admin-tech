@@ -1,11 +1,15 @@
 spring:
   application:
     name: spring-code
-  datasource:
-    url: jdbc:mysql://localhost:3306/big_event
-    password: 12345678
-    username: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active: dev
 uploadSetting:
   ACCESS_KEY: LTAI5tNhXKtw2YWe4XYXo4iN
   ACCESS_KEY_SECRET: WjmN8KOFHeLFG3bNb9e6bXsIoBPsXx
+server:
+  servlet:
+    context-path: /api
+mybatis:
+  mapperLocations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

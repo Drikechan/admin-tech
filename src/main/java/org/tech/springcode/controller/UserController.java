@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
+import org.tech.springcode.model.resp.LoginResp;
 import org.tech.springcode.pojo.User;
 import org.tech.springcode.service.UserService;
 import org.tech.springcode.utils.JwtUtil;
@@ -36,25 +37,31 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Result<HashMap<String, String>> login(@RequestBody User user) {
+    public Result<LoginResp> login(@RequestBody User user) {
         User userData = userService.findByUserName(user.getUsername());
         if (userData == null) {
             return Result.error("用户不存在，请先注册");
         }
         String cryptPassword = Md5Util.getMD5String(user.getPassword());
         if (userData.getPassword().equals(cryptPassword)) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("id", userData.getId());
-            map.put("username", user.getUsername());
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", userData.getId());
+            claims.put("username", user.getUsername());
 
-            String token = JwtUtil.genToken(map);
+            String token = JwtUtil.genToken(claims);
 
             ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
             ops.set(token, token, 72, TimeUnit.HOURS);
-            HashMap<String, String> loginInfo = new HashMap<>();
-            loginInfo.put("token", token);
+            LoginResp loginInfo = new LoginResp();
+            loginInfo.setToken(token);
             return Result.success(loginInfo);
         }
         return Result.error("密码错误");
+    }
+
+    @PostMapping("/getUserInfo")
+    public Result<User> getUserInfo() {
+
+        return Result.success();
     }
 }
