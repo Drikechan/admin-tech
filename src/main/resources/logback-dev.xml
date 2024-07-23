@@ -45,8 +45,8 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}.log
             </fileNamePattern>
-            <maxHistory>180</maxHistory>
-            <totalSizeCap>40GB</totalSizeCap>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
         </rollingPolicy>
         <!-- 日志文件的格式 -->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -71,6 +71,7 @@
     <logger name="org.springframework" level="WARN"/>
     <logger name="org.apache" level="WARN"/>
     <logger name="org.tech.springcode" level="DEBUG"/>
+    <logger name="org.tech.springcode" level="ERROR"/>
     <!--如果需要打印SQL,可以把下面的级别设置为DEBUG -->
     <logger name="org.tech.springcode.mapper" level="DEBUG"/>
 

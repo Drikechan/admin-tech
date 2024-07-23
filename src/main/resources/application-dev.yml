@@ -10,3 +10,5 @@ spring:
       host: localhost
 logging:
   config: classpath:logback-dev.xml
+  includePaths:
+    - /api/**
