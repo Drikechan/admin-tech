@@ -72,6 +72,7 @@
     <logger name="org.apache" level="WARN"/>
     <logger name="org.tech.springcode" level="DEBUG"/>
     <logger name="org.tech.springcode" level="ERROR"/>
+    <logger name="org.tech.springcode" level="INFO"/>
     <!--如果需要打印SQL,可以把下面的级别设置为DEBUG -->
     <logger name="org.tech.springcode.mapper" level="DEBUG"/>
 
