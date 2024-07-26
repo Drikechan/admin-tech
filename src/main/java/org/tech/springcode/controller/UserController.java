@@ -1,6 +1,8 @@
 package org.tech.springcode.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -17,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+@Tag(name = "认证中心")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -27,6 +30,7 @@ public class UserController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    @Operation(summary = "注册")
     @PostMapping("/register")
     public Result register(@RequestBody User user) {
         User userData = userService.findByUserName(user.getUsername());
@@ -37,6 +41,8 @@ public class UserController {
         return Result.success("注册成功");
     }
 
+
+    @Operation(summary = "登录")
     @PostMapping("/login")
     public Result<LoginResp> login(@RequestBody User user) {
         User userData = userService.findByUserName(user.getUsername());
