@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
-import org.tech.springcode.annotation.AroundLog;
 import org.tech.springcode.model.resp.LoginResp;
 import org.tech.springcode.pojo.User;
 import org.tech.springcode.service.UserService;
 import org.tech.springcode.utils.JwtUtil;
 import org.tech.springcode.utils.Md5Util;
 import org.tech.springcode.utils.Result;
+import org.tech.springcode.utils.ThreadLocalUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -68,7 +68,15 @@ public class UserController {
 
     @PostMapping("/getUserInfo")
     public Result<User> getUserInfo() {
+        Map<String, String> map = ThreadLocalUtil.get();
+        String username = map.get("username");
+        User user = userService.findByUserName(username);
+        return Result.success(user);
+    }
 
+    @PostMapping("/delete")
+    public Result deleteUser(@RequestBody User user) {
+        userService.deleteUser(user);
         return Result.success();
     }
 }

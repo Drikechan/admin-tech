@@ -9,6 +9,7 @@ uploadSetting:
 server:
   servlet:
     context-path: /api
+  port: 8099
 mybatis:
   mapperLocations: classpath:/mapper/*.xml
   configuration:

@@ -14,4 +14,6 @@ public interface UserMapper {
 
     @Select("select * from user where username=#{username}")
     User findByUserName(String username);
+
+    void deleteUser(User user);
 }
