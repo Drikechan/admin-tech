@@ -5,7 +5,7 @@ spring:
     active: dev
 uploadSetting:
   ACCESS_KEY: 111111
-  ACCESS_KEY_SECRET: WjmN8KOFHeLFG3bNb9e6bXsIoBPsXx
+  ACCESS_KEY_SECRET: 1111
 server:
   servlet:
     context-path: /api
