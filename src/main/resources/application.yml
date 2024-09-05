@@ -4,7 +4,7 @@ spring:
   profiles:
     active: dev
 uploadSetting:
-  ACCESS_KEY: LTAI5tNhXKtw2YWe4XYXo4iN
+  ACCESS_KEY: 111111
   ACCESS_KEY_SECRET: WjmN8KOFHeLFG3bNb9e6bXsIoBPsXx
 server:
   servlet:
